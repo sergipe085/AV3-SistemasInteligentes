@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from functions import *
 from random import randrange
 
-def random_search(f, x1_range, ax, x2_range=None, min = False):
+def random_search(f, x1_range, x2_range, ax, min = False):
     maxit = 1000
 
     if (x2_range == None):
@@ -56,25 +56,25 @@ def candidato(x_best, x_range, x2_range, lbda):
 # Mas nao acha o global
    
 ax = plot_function(funcao_01, [-100, 100], [-100, 100], "Local Random Search Funcao 01")
-random_search(funcao_01, [-100, 100], ax, min=False)
+random_search(funcao_01, [-100, 100], [-100, 100], ax, min=True)
 
 ax = plot_function(funcao_02, [-2, 4], [-2, 5], "Local Random Search Funcao 02")
-random_search(funcao_02, [-2, 4], ax, x2_range= [-2, 5], min=False)
+random_search(funcao_02, [-2, 4], [-2, 5], ax, min=False)
 
 # ax = plot_function(funcao_03, [-8, 8], [-8, 8], "Local Random Search Funcao 03")
-# hill_climbing(funcao_03, [-8, 8], [-8, 8], ax, min=True)
+# random_search(funcao_03, [-8, 8], [-8, 8], ax, min=True)
 
 # ax = plot_function(funcao_04, [-5.12, 5.12], [-5.12, 5.12], "Local Random Search Funcao 04")
-# hill_climbing(funcao_04, [-5.12, 5.12], [-5.12, 5.12], ax, min=True)
+# random_search(funcao_04, [-5.12, 5.12], [-5.12, 5.12], ax, min=True)
 
 # ax = plot_function(funcao_05, [-2, 2], [-1, 3], "Local Random Search Funcao 05")
-# hill_climbing(funcao_05, [-2, 2], [-1, 3], ax, min=True)
+# random_search(funcao_05, [-2, 2], [-1, 3], ax, min=True)
 
 # ax = plot_function(funcao_06, [-1, 3], [-1, 3], "Local Random Search Funcao 06")
-# hill_climbing(funcao_06, [-1, 3], [-1, 3], ax, min=False)
+# random_search(funcao_06, [-1, 3], [-1, 3], ax, min=False)
 
 # ax = plot_function(funcao_07, [0, np.pi], [0, np.pi], "Local Random Search Funcao 07")
-# hill_climbing(funcao_07, [0, np.pi], [0, np.pi], ax, min=True)
+# random_search(funcao_07, [0, np.pi], [0, np.pi], ax, min=True)
 
 # ax = plot_function(funcao_08, [-200, 20], [-200, 20], "Local Random Search Funcao 08")
 # random_search(funcao_08, [-200, 20], ax, min=True)

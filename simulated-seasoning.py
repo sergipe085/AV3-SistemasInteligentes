@@ -66,25 +66,25 @@ ax = plot_function(funcao_01, [-100, 100], [-100, 100], "Simulated Seasoning Fun
 simulated_seasoning(funcao_01, [-100, 100], [-100, 100], ax, min=True)
 
 # ax = plot_function(funcao_02, [-2, 4], [-2, 5], "Simulated Seasoning Funcao 02")
-# global_random_search(funcao_02, [-2, 4], [-2, 5], ax, min=False)
+# simulated_seasoning(funcao_02, [-2, 4], [-2, 5], ax, min=False)
 
 # ax = plot_function(funcao_03, [-8, 8], [-8, 8], "Simulated Seasoning Funcao 03")
-# global_random_search(funcao_03, [-8, 8], [-8, 8], ax, min=True)
+# simulated_seasoning(funcao_03, [-8, 8], [-8, 8], ax, min=True)
 
 # ax = plot_function(funcao_04, [-5.12, 5.12], [-5.12, 5.12], "Simulated Seasoning Funcao 04")
-# global_random_search(funcao_04, [-5.12, 5.12], [-5.12, 5.12], ax, min=True)
+# simulated_seasoning(funcao_04, [-5.12, 5.12], [-5.12, 5.12], ax, min=True)
 
 # ax = plot_function(funcao_05, [-2, 2], [-1, 3], "Simulated Seasoning Funcao 05")
-# global_random_search(funcao_05, [-2, 2], [-1, 3], ax, min=True)
+# simulated_seasoning(funcao_05, [-2, 2], [-1, 3], ax, min=True)
 
 # ax = plot_function(funcao_06, [-1, 3], [-1, 3], "Simulated Seasoning Funcao 06")
-# global_random_search(funcao_06, [-1, 3], [-1, 3], ax, min=True)
+# simulated_seasoning(funcao_06, [-1, 3], [-1, 3], ax, min=True)
 
 # ax = plot_function(funcao_07, [0, np.pi], [0, np.pi], "Simulated Seasoning Funcao 07")
-# global_random_search(funcao_07, [0, np.pi], [0, np.pi], ax, min=True)
+# simulated_seasoning(funcao_07, [0, np.pi], [0, np.pi], ax, min=True)
 
 # ax = plot_function(funcao_08, [-200, 20], [-200, 20], "Simulated Seasoning Funcao 08")
-# random_search(funcao_08, [-200, 20], ax, min=True)
+# simulated_seasoning(funcao_08, [-200, 20], [-200, 20], ax, min=True)
 plt.show()
 # plot_function(funcao_01)
 
