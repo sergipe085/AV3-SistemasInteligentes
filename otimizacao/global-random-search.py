@@ -54,29 +54,29 @@ def candidato(x1_range, x2_range):
 # Acha o maximo ou minimo local
 # Mas nao acha o global
    
-ax = plot_function(funcao_01, [-100, 100], [-100, 100], "Hill Climbing Funcao 01")
+ax = plot_function(funcao_01, [-100, 100], [-100, 100], "Global Random Search Funcao 01")
 global_random_search(funcao_01, [-100, 100], [-100, 100], ax, min=True)
 
-ax = plot_function(funcao_02, [-2, 4], [-2, 5], "Hill Climbing Funcao 02")
+ax = plot_function(funcao_02, [-2, 4], [-2, 5], "Global Random Search Funcao 02")
 global_random_search(funcao_02, [-2, 4], [-2, 5], ax, min=False)
 
-# ax = plot_function(funcao_03, [-8, 8], [-8, 8], "Hill Climbing Funcao 03")
+# ax = plot_function(funcao_03, [-8, 8], [-8, 8], "Global Random Search Funcao 03")
 # global_random_search(funcao_03, [-8, 8], [-8, 8], ax, min=True)
 
-# ax = plot_function(funcao_04, [-5.12, 5.12], [-5.12, 5.12], "Hill Climbing Funcao 04")
+# ax = plot_function(funcao_04, [-5.12, 5.12], [-5.12, 5.12], "Global Random Search Funcao 04")
 # global_random_search(funcao_04, [-5.12, 5.12], [-5.12, 5.12], ax, min=True)
 
-# ax = plot_function(funcao_05, [-2, 2], [-1, 3], "Hill Climbing Funcao 05")
+# ax = plot_function(funcao_05, [-2, 2], [-1, 3], "Global Random Search Funcao 05")
 # global_random_search(funcao_05, [-2, 2], [-1, 3], ax, min=True)
 
-ax = plot_function(funcao_06, [-1, 3], [-1, 3], "Hill Climbing Funcao 06")
+ax = plot_function(funcao_06, [-1, 3], [-1, 3], "Global Random Search Funcao 06")
 global_random_search(funcao_06, [-1, 3], [-1, 3], ax, min=True)
 
-# ax = plot_function(funcao_07, [0, np.pi], [0, np.pi], "Hill Climbing Funcao 07")
+# ax = plot_function(funcao_07, [0, np.pi], [0, np.pi], "Global Random Search Funcao 07")
 # global_random_search(funcao_07, [0, np.pi], [0, np.pi], ax, min=True)
 
-# ax = plot_function(funcao_08, [-200, 20], [-200, 20], "Hill Climbing Funcao 08")
-# random_search(funcao_08, [-200, 20], ax, min=True)
+# ax = plot_function(funcao_08, [-200, 20], [-200, 20], "Global Random Search Funcao 08")
+# global_random_search(funcao_08, [-200, 20], ax, min=True)
 plt.show()
 # plot_function(funcao_01)
 

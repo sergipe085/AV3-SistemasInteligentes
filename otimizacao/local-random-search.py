@@ -11,7 +11,7 @@ def random_search(f, x1_range, x2_range, ax, min = False):
 
     x_best = np.array([randrange(x1_range[0], x1_range[1]), randrange(x2_range[0], x2_range[1])])
     y_best = f(x_best[0], x_best[1]);
-    lbda = 1.0
+    lbda = 0.1
 
     ax.scatter3D(x_best[0], x_best[1], y_best, color="yellow", s=50, marker="X")
 
@@ -55,8 +55,8 @@ def candidato(x_best, x_range, x2_range, lbda):
 # Acha o maximo ou minimo local
 # Mas nao acha o global
    
-ax = plot_function(funcao_01, [-100, 100], [-100, 100], "Local Random Search Funcao 01")
-random_search(funcao_01, [-100, 100], [-100, 100], ax, min=True)
+# ax = plot_function(funcao_01, [-100, 100], [-100, 100], "Local Random Search Funcao 01")
+# random_search(funcao_01, [-100, 100], [-100, 100], ax, min=True)
 
 ax = plot_function(funcao_02, [-2, 4], [-2, 5], "Local Random Search Funcao 02")
 random_search(funcao_02, [-2, 4], [-2, 5], ax, min=False)
