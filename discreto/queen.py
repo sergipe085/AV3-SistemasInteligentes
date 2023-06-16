@@ -3,10 +3,10 @@ import numpy as np
 
 queens = [0, 0, 0, 0, 0, 0, 0, 0]
 t = 0
-n = 50
-probabilidade_mutacao = 0.01
-probabilidade_de_recombinacao = 0.90;
-taxa_mutacao          = 1
+n = 10
+probabilidade_mutacao = 0.5
+probabilidade_de_recombinacao = 0.95;
+taxa_mutacao          = 0.01
 
 
 def h(x):
@@ -17,6 +17,11 @@ def h(x):
 
     for i in range(len(m)):
         for j in range(len(m[i])):
+            if (x[i] > 7):
+                x[i] = 7
+            if (x[i] < 0):
+                x[i] = 0
+
             if (j == x[i]):
                 m[j][i] = 1
             else:
@@ -82,7 +87,7 @@ def aptidao(x):
 
 def proportion_selection(aptidaoArr):
     aptidaoArr = np.array(aptidaoArr)
-    aptidaoArr = aptidaoArr / aptidaoArr.sum()
+    aptidaoArr = (aptidaoArr / aptidaoArr.sum())
     i = 0
     Soma = aptidaoArr[i]
     r = np.random.uniform(0, 1)
@@ -93,33 +98,38 @@ def proportion_selection(aptidaoArr):
     return i
 
 def mutacao(populacao):
-    for x in populacao:
-        for i in range(len(x)):
-            xu = np.random.uniform(0, 1)
-            xl = np.random.uniform(0, 1)
-            n = np.random.uniform(0, 1)
-            x[i] = int(x[i] + taxa_mutacao * (xu-xl) * n)
-            if (x[i] < 0):
-                x[i] = 0
-            if (x[i] > 7):
-                x[i] = 7
+    for i in range(len(populacao)):
+        for j in range(len(populacao[i])):
+            p = np.random.uniform(0, 1);
+            if (p < probabilidade_mutacao):
+                xu = 7
+                xl = 0
+                n = np.random.uniform(0, 1)
+                populacao[i][j] = round(populacao[i][j] + taxa_mutacao * (xu-xl) * n)
+
+                if (populacao[i][j] > 7):
+                    populacao[i][j] = 7
+                elif populacao[i][j] < 0:
+                    populacao[i][j] = 0
  
 def recombinar(x1, x2):
-    mascara = [0, 0, 0, 0, 0, 0, 0, 0]
+    p = np.random.uniform(0, 1);
+    if (p < probabilidade_de_recombinacao):
+        mascara = [0, 0, 0, 0, 0, 0, 0, 0]
 
-    p = randrange(0, len(mascara))
+        p = randrange(0, len(mascara))
 
-    for i in range(len(mascara)):
-        if i >= p:
-            mascara[i] = 1
+        for i in range(len(mascara)):
+            if i >= p:
+                mascara[i] = 1
 
-    _x1 = x1.copy()
-    _x2 = x2.copy()
+        _x1 = x1.copy()
+        _x2 = x2.copy()
 
-    for i in range(len(mascara)):
-        if (mascara[i] == 1):
-            x1[i] = _x2[i]
-            x2[i] = _x1[i]
+        for i in range(len(mascara)):
+            if (mascara[i] == 1):
+                x1[i] = _x2[i]
+                x2[i] = _x1[i]
 
 population = [None] * n
 for i in range(n):
@@ -138,7 +148,8 @@ def imprimir_populacao(population):
 print(f"POPULACAO INICIAL")
 imprimir_populacao(population)
 
-while t <= 5000:   
+parar = False
+while t <= 100 and parar == False:   
     aptidaoArr = [None] * n
     for i in range(n):
         aptidaoArr[i] = aptidao(population[i])
@@ -147,17 +158,22 @@ while t <= 5000:
     nova_populacao = [None] * n 
     for i in range(n):
         nova_populacao[i] = population[proportion_selection(aptidaoArr)]
-
-
-    p = np.random.uniform(0, 1);
-
-    if (p > probabilidade_de_recombinacao):
-        for i in range(len(nova_populacao) - 1):
-            recombinar(nova_populacao[i], nova_populacao[i + 1])
+        # nova_populacao[i] = population[i]
         
-    p = np.random.uniform(0, 1);
-    if (p < probabilidade_mutacao):
-        mutacao(nova_populacao)
+
+    for i in range(len(nova_populacao) - 1):
+        recombinar(nova_populacao[i], nova_populacao[i + 1])
+    print("==ANTES DA MUTACAO==")
+    imprimir_populacao(nova_populacao)
+    mutacao(nova_populacao)
+    print("==DEPOIS DA MUTACAO==")
+    imprimir_populacao(nova_populacao)
+
+    for i in range(len(nova_populacao)):
+        if aptidao(nova_populacao[i]) == 28:
+            print("ACHOUUUU")
+            parar = True
+            
 
     imprimir_populacao(nova_populacao)
 
@@ -165,6 +181,8 @@ while t <= 5000:
 
 
 # A rainha da coluna 1 esta na linha 5
+
+print(aptidao([4, 2, 5, 7, 1, 3, 0, 6]))
 
 # Funcao aptidao Ψ(x) = 28 − h(x)
 # Objetivo: Maximizar a funcao aptidao            
