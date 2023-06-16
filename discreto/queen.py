@@ -3,11 +3,10 @@ import numpy as np
 
 queens = [0, 0, 0, 0, 0, 0, 0, 0]
 t = 0
-n = 10
-probabilidade_mutacao = 0.5
+n = 100
+probabilidade_mutacao = 0.05
 probabilidade_de_recombinacao = 0.95;
-taxa_mutacao          = 0.01
-
+taxa_mutacao          = 0.25
 
 def h(x):
     m = [None]*8
@@ -104,7 +103,7 @@ def mutacao(populacao):
             if (p < probabilidade_mutacao):
                 xu = 7
                 xl = 0
-                n = np.random.uniform(0, 1)
+                n = np.random.uniform(-1, 1)
                 populacao[i][j] = round(populacao[i][j] + taxa_mutacao * (xu-xl) * n)
 
                 if (populacao[i][j] > 7):
@@ -148,8 +147,22 @@ def imprimir_populacao(population):
 print(f"POPULACAO INICIAL")
 imprimir_populacao(population)
 
+solucoes = []
+
+def reiniciar():
+    population = [None] * n
+    for i in range(n):
+        population[i] = [None] * 8
+        for j in range(8):
+            population[i][j] = randrange(0, 8)
+
+
 parar = False
-while t <= 100 and parar == False:   
+while len(solucoes) < 20:   
+    if (t >= 30):
+        t = 0
+        reiniciar()
+
     aptidaoArr = [None] * n
     for i in range(n):
         aptidaoArr[i] = aptidao(population[i])
@@ -157,32 +170,23 @@ while t <= 100 and parar == False:
 
     nova_populacao = [None] * n 
     for i in range(n):
-        nova_populacao[i] = population[proportion_selection(aptidaoArr)]
-        # nova_populacao[i] = population[i]
+        nova_populacao[i] = population[proportion_selection(aptidaoArr)].copy()
+        # nova_populacao[i] = population[i].copy()
         
 
     for i in range(len(nova_populacao) - 1):
         recombinar(nova_populacao[i], nova_populacao[i + 1])
-    print("==ANTES DA MUTACAO==")
-    imprimir_populacao(nova_populacao)
     mutacao(nova_populacao)
-    print("==DEPOIS DA MUTACAO==")
-    imprimir_populacao(nova_populacao)
 
     for i in range(len(nova_populacao)):
         if aptidao(nova_populacao[i]) == 28:
-            print("ACHOUUUU")
-            parar = True
-            
-
-    imprimir_populacao(nova_populacao)
+            if ((nova_populacao[i] in solucoes) == False):
+                print(f"ACHOUUUU GERACAO: {t}")
+                print(nova_populacao[i])
+                solucoes.append(nova_populacao[i])
+                reiniciar();
 
     population = nova_populacao.copy();
 
-
-# A rainha da coluna 1 esta na linha 5
-
-print(aptidao([4, 2, 5, 7, 1, 3, 0, 6]))
-
-# Funcao aptidao Ψ(x) = 28 − h(x)
-# Objetivo: Maximizar a funcao aptidao            
+for i in solucoes:
+    print(f"{i}: {aptidao(i)}")        
