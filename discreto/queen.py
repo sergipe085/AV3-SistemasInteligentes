@@ -128,8 +128,9 @@ def recombinar(x1, x2):
 
         for i in range(len(mascara)):
             if (mascara[i] == 1):
-                x1[i] = _x2[i]
-                x2[i] = _x1[i]
+                tmp = x1[i]
+                x1[i] = x2[i]
+                x2[i] = tmp
 
 population = [None] * n
 for i in range(n):
